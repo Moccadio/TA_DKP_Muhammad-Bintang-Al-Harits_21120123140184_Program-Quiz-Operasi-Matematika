@@ -38,7 +38,7 @@ class HasilJawaban:
         tk.Label(self.frame, text=result_text, font=("Helvetica", 14)).pack(pady=20)
         
         tk.Button(self.frame, text="Kembali ke Main Menu", command=self.back_to_main_menu).pack(pady=10)
-        tk.Button(self.frame, text="Exit", command=self.parent.quit).pack(pady=10)
+        tk.Button(self.frame, text="Keluar Aplikasi", command=self.parent.quit).pack(pady=10)
 
     def back_to_main_menu(self):
         self.parent.destroy()
@@ -53,14 +53,14 @@ class PilihMode:
         self.frame = tk.Frame(parent)
         self.frame.pack()
 
-        tk.Label(self.frame, text="Select Difficulty:", font=("Poppins", 14)).pack(pady=10)
+        tk.Label(self.frame, text="Pilih Mode:", font=("Poppins", 14)).pack(pady=10)
 
         self.difficulty = tk.StringVar()
         tk.Radiobutton(self.frame, text="Baby Gronk", variable=self.difficulty, value="easy").pack()
         tk.Radiobutton(self.frame, text="Rizzler", variable=self.difficulty, value="medium").pack()
         tk.Radiobutton(self.frame, text="Skibidi Abyss", variable=self.difficulty, value="hard").pack()
 
-        tk.Button(self.frame, text="Start Quiz", command=self.start_quiz_with_difficulty).pack(pady=10)
+        tk.Button(self.frame, text="Mulai Quiz", command=self.start_quiz_with_difficulty).pack(pady=10)
 
     def start_quiz_with_difficulty(self):
         selected_difficulty = self.difficulty.get()
@@ -87,9 +87,9 @@ class MathQuizApp:
         tk.Label(self.main_frame, text="Tugas Akhir", font=("Poppins", 8)).pack(pady=10)
         tk.Label(self.main_frame, text="Muhammad Bintang Al Harits", font=("Poppins", 8)).pack(pady=0)
         tk.Label(self.main_frame, text="21120123140184", font=("Poppins", 8)).pack(pady=0)
-        tk.Button(self.main_frame, text="Start Quiz", command=self.select_difficulty).pack(pady=10)
+        tk.Button(self.main_frame, text="Mulai Quiz", command=self.select_difficulty).pack(pady=10)
         tk.Button(self.main_frame, text="Tutorial", command=self.start_tutorial).pack(pady=10)
-        tk.Button(self.main_frame, text="Exit", command=self.root.quit).pack(pady=10)
+        tk.Button(self.main_frame, text="Keluar Aplikasi", command=self.root.quit).pack(pady=10)
 
     def select_difficulty(self):
         self.main_frame.destroy()
