@@ -120,10 +120,10 @@ class MathQuizApp:
             return 10  # Jumlah soal untuk tingkat kesulitan mudah
         elif self.difficulty == "medium":
             return 20  # Jumlah soal untuk tingkat kesulitan sedang
+        elif self.difficulty == "hard":
+            return 50
         else:
-            return 50  # Jumlah soal untuk tingkat kesulitan sulit
-
-    # Metode lainnya tidak berubah
+            return 100  # Jumlah soal untuk tingkat kesulitan sulit
 
     def start_tutorial(self):
         self.main_frame.destroy()
@@ -174,8 +174,10 @@ class MathQuizApp:
                 max_operand = 10
             elif self.difficulty == "medium":
                 max_operand = 25  # Perubahan di sini untuk medium
+            elif self.difficulty == "hard":
+                max_operand = 50  # Perubahan di sini untuk medium
             else:
-                max_operand = 50
+                max_operand = 100
             bilangan1 = random.randint(1, max_operand)
             
             if operasional == "/":
@@ -222,12 +224,12 @@ class MathQuizApp:
             congratulation_text = "Selamat! Anda telah menjadi 'Sigma Male Mewing'!"
             tk.Label(self.root, text=congratulation_text, font=("Helvetica", 14)).pack(pady=20)
 
-        elif self.difficulty == "hard" and self.total_jawaban < 40:
+        elif self.difficulty == "hard" and self.total_jawaban > 40:
             HasilJawaban(self.root, self.total_quiz, self.total_jawaban, self.salah_jawab)
             congratulation_text = "Selamat! Anda telah menjadi 'Only in Ohio'!"
             tk.Label(self.root, text=congratulation_text, font=("Helvetica", 14)).pack(pady=20)
 
-        elif self.difficulty == "hard" and self.total_jawaban < 30:
+        elif self.difficulty == "hard" and self.total_jawaban > 30:
             HasilJawaban(self.root, self.total_quiz, self.total_jawaban, self.salah_jawab)
             congratulation_text = "Kerja bagus! Namun kemampuanmu belum sebanding dengan Skibidi Toilet"
             tk.Label(self.root, text=congratulation_text, font=("Helvetica", 14)).pack(pady=20)
