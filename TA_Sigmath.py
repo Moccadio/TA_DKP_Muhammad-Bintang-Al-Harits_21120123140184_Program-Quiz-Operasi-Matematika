@@ -117,13 +117,11 @@ class MathQuizApp:
 
     def get_total_quiz(self):
         if self.difficulty == "easy":
-            return 10  # Jumlah soal untuk tingkat kesulitan mudah
+            return 10
         elif self.difficulty == "medium":
-            return 20  # Jumlah soal untuk tingkat kesulitan sedang
-        elif self.difficulty == "hard":
-            return 50
+            return 20
         else:
-            return 100  # Jumlah soal untuk tingkat kesulitan sulit
+            return 50
 
     def start_tutorial(self):
         self.main_frame.destroy()
@@ -173,11 +171,9 @@ class MathQuizApp:
             if self.difficulty == "easy":
                 max_operand = 10
             elif self.difficulty == "medium":
-                max_operand = 25  # Perubahan di sini untuk medium
-            elif self.difficulty == "hard":
-                max_operand = 50  # Perubahan di sini untuk medium
+                max_operand = 25
             else:
-                max_operand = 100
+                max_operand = 50
             bilangan1 = random.randint(1, max_operand)
             
             if operasional == "/":
