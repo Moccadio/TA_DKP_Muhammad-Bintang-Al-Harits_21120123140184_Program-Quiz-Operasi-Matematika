@@ -239,7 +239,6 @@ class MathQuizApp:
             HasilJawaban(self.root, self.total_quiz, self.total_jawaban, self.salah_jawab)
             congratulation_text = "Selamat! Anda telah menjadi 'Baby Gronk'!"
             tk.Label(self.root, text=congratulation_text, font=("Helvetica", 14)).pack(pady=20)
-
         else:
             HasilJawaban(self.root, self.total_quiz, self.total_jawaban, self.salah_jawab)
             congratulation_text = "Beristirahatlah! Mio Mirza menunggumu!"
