@@ -72,24 +72,25 @@ class MathQuizApp:
         self.root = root
         self.root.title("SigMath")
         self.root.geometry("800x600")
-        self.quiz_duration = 300  # Durasi kuis dalam detik (5 menit)
+        self.quiz_duration = 300 
         self.start_time = None
-        self.timer_label = None  # Label untuk menampilkan timer
-        self.difficulty = None  # Kesulitan kuis
+        self.timer_label = None 
+        self.difficulty = None  
         self.main_menu()
 
     def main_menu(self):
         self.main_frame = tk.Frame(self.root)
-        self.main_frame.pack()
+        self.main_frame.pack(fill="both", expand=True)
 
         tk.Label(self.main_frame, text="Welcome to SigMath", font=("Poppins", 16)).pack(pady=20)
-        tk.Label(self.main_frame, text="Quiznya Pria Sejati!!!", font=("Poppins", 16)).pack(pady=0)
-        tk.Label(self.main_frame, text="Tugas Akhir", font=("Poppins", 8)).pack(pady=10)
-        tk.Label(self.main_frame, text="Muhammad Bintang Al Harits", font=("Poppins", 8)).pack(pady=0)
-        tk.Label(self.main_frame, text="21120123140184", font=("Poppins", 8)).pack(pady=0)
+
         tk.Button(self.main_frame, text="Mulai Quiz", command=self.select_difficulty).pack(pady=10)
         tk.Button(self.main_frame, text="Tutorial", command=self.start_tutorial).pack(pady=10)
         tk.Button(self.main_frame, text="Keluar Aplikasi", command=self.root.quit).pack(pady=10)
+
+        identity_frame = tk.Frame(self.main_frame)
+        identity_frame.pack(side=tk.BOTTOM, fill=tk.X, anchor=tk.W)
+        tk.Label(identity_frame, text="Tugas Akhir\nMuhammad Bintang Al Harits\n21120123140184", font=("Poppins", 8)).pack(side=tk.LEFT, fill=tk.X)
 
     def select_difficulty(self):
         self.main_frame.destroy()
@@ -155,8 +156,7 @@ class MathQuizApp:
 
         self.answer_entry = tk.Entry(self.quiz_frame)
         self.answer_entry.pack()
-        self.answer_entry.bind("<Return>", lambda event: self.check_answer())  # Bind the Return key to check_answer()
-
+        self.answer_entry.bind("<Return>", lambda event: self.check_answer())
         self.feedback_label = tk.Label(self.quiz_frame, text="")
         self.feedback_label.pack()
 
