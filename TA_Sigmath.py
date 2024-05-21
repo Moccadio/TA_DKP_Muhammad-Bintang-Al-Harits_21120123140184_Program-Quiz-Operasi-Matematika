@@ -81,9 +81,7 @@ class MathQuizApp:
     def main_menu(self):
         self.main_frame = tk.Frame(self.root)
         self.main_frame.pack(fill="both", expand=True)
-
         tk.Label(self.main_frame, text="Welcome to SigMath", font=("Poppins", 16)).pack(pady=20)
-
         tk.Button(self.main_frame, text="Mulai Quiz", command=self.select_difficulty).pack(pady=10)
         tk.Button(self.main_frame, text="Tutorial", command=self.start_tutorial).pack(pady=10)
         tk.Button(self.main_frame, text="Keluar Aplikasi", command=self.root.quit).pack(pady=10)
@@ -107,13 +105,13 @@ class MathQuizApp:
         self.start_time = time.time()
         self.timer_label = tk.Label(self.quiz_frame, text="05:00")
         self.timer_label.pack()
-        self.update_timer()  # Memulai pembaruan timer
+        self.update_timer()
 
         self.current_problem = None
         self.total_jawaban = 0
         self.salah_jawab = 0
         self.question_count = 0
-        self.total_quiz = self.get_total_quiz()  # Mendapatkan jumlah soal berdasarkan kesulitan
+        self.total_quiz = self.get_total_quiz()
         self.create_widgets()
 
     def get_total_quiz(self):
@@ -178,10 +176,10 @@ class MathQuizApp:
             
             if operasional == "/":
                 factors = [i for i in range(2, max_operand+1) if bilangan1 % i == 0]
-                factors.remove(bilangan1)  # Menghapus bilangan1 dari faktor-faktor yang mungkin
+                factors.remove(bilangan1)
                 bilangan2 = random.choice(factors)
             else:
-                bilangan2 = random.randint(1, max_operand)  # Untuk operasi lain, masih dapat dipilih secara acak
+                bilangan2 = random.randint(1, max_operand)
             
             self.current_problem = Bilangan(operasional, bilangan1, bilangan2)
             self.problem_label.config(text=f"Question {self.question_count}/{self.total_quiz}: {bilangan1} {operasional} {bilangan2} = ")
@@ -209,7 +207,7 @@ class MathQuizApp:
         if remaining_time > 0:
             minutes, seconds = divmod(remaining_time, 60)
             self.timer_label.config(text=f"{int(minutes):02d}:{int(seconds):02d}")
-            self.root.after(1000, self.update_timer)  # Memperbarui timer setiap detik
+            self.root.after(1000, self.update_timer)
         else:
             self.show_results()
 
