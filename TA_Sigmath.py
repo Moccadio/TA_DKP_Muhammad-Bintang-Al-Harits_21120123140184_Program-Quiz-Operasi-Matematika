@@ -74,37 +74,6 @@ class HasilJawaban:
         app = MathQuizApp(root)
         root.mainloop()
 
-class PilihMode:
-    def __init__(self, parent, callback):
-        self.parent = parent
-        self.callback = callback
-
-        self.frame = tk.Frame(parent)
-        self.frame.pack()
-
-        tk.Label(self.frame, text="Pilih Mode:", font=("Poppins", 14)).pack(pady=10)
-
-        self.difficulty = tk.StringVar()
-        tk.Radiobutton(self.frame, text="Baby Gronk", variable=self.difficulty, value="easy").pack()
-        tk.Radiobutton(self.frame, text="Rizzler", variable=self.difficulty, value="medium").pack()
-        tk.Radiobutton(self.frame, text="Skibidi Abyss", variable=self.difficulty, value="hard").pack()
-
-        tk.Button(self.frame, text="Mulai Quiz", command=self.start_quiz_with_difficulty).pack(pady=10)
-        tk.Button(self.frame, text="Kembali ke Main Menu", command=self.back_to_main_menu).pack(pady=10)
-
-    def start_quiz_with_difficulty(self):
-        selected_difficulty = self.difficulty.get()
-        if selected_difficulty:
-            self.callback(selected_difficulty)
-            self.frame.destroy()
-
-    def back_to_main_menu(self):
-        self.frame.destroy()
-        self.parent.destroy()
-        root = tk.Tk()
-        app = MathQuizApp(root)
-        root.mainloop()
-
 class MathQuizApp:
     def __init__(self, root):
         self.root = root
@@ -213,11 +182,28 @@ class MathQuizApp:
 
     def select_difficulty(self):
         self.main_frame.destroy()
-        PilihMode(self.root, self.start_quiz_with_difficulty)
+        self.show_difficulty_selection()
 
-    def start_quiz_with_difficulty(self, difficulty):
-        self.difficulty = difficulty
-        self.start_quiz()
+    def show_difficulty_selection(self):
+        self.difficulty_frame = tk.Frame(self.root)
+        self.difficulty_frame.pack()
+
+        tk.Label(self.difficulty_frame, text="Pilih Mode:", font=("Poppins", 14)).pack(pady=10)
+
+        self.difficulty = tk.StringVar()
+        tk.Radiobutton(self.difficulty_frame, text="Baby Gronk", variable=self.difficulty, value="easy").pack()
+        tk.Radiobutton(self.difficulty_frame, text="Rizzler", variable=self.difficulty, value="medium").pack()
+        tk.Radiobutton(self.difficulty_frame, text="Skibidi Abyss", variable=self.difficulty, value="hard").pack()
+
+        tk.Button(self.difficulty_frame, text="Mulai Quiz", command=self.start_quiz_with_difficulty).pack(pady=10)
+        tk.Button(self.difficulty_frame, text="Kembali ke Main Menu", command=self.back_to_main_menu).pack(pady=10)
+
+    def start_quiz_with_difficulty(self):
+        selected_difficulty = self.difficulty.get()
+        if selected_difficulty:
+            self.difficulty_frame.destroy()
+            self.difficulty = selected_difficulty
+            self.start_quiz()
 
     def start_quiz(self):
         self.main_frame.destroy()
@@ -226,13 +212,13 @@ class MathQuizApp:
         self.start_time = time.time()
         self.timer_label = tk.Label(self.quiz_frame, text="05:00")
         self.timer_label.pack()
-        self.update_timer()  # Memulai pembaruan timer
+        self.update_timer()
 
         self.current_problem = None
         self.total_jawaban = 0
         self.salah_jawab = 0
         self.question_count = 0
-        self.total_quiz = self.get_total_quiz()  # Mendapatkan jumlah soal berdasarkan kesulitan
+        self.total_quiz = self.get_total_quiz()
         self.create_widgets()
 
     def get_total_quiz(self):
@@ -266,8 +252,11 @@ class MathQuizApp:
         tk.Button(self.tutorial_frame, text="Kembali ke Main Menu", command=self.back_to_main_menu).pack(pady=10)
 
     def back_to_main_menu(self):
-        self.tutorial_frame.destroy()
-        self.main_menu()    
+        if hasattr(self, "tutorial_frame"):
+            self.tutorial_frame.destroy()
+        else:
+            self.difficulty_frame.destroy()
+        self.main_menu()
 
     def create_widgets(self):
         self.problem_label = tk.Label(self.quiz_frame, text="")
@@ -283,7 +272,6 @@ class MathQuizApp:
         self.feedback_label.config(text="")
 
         self.new_problem()
-
 
     def new_problem(self):
         current_time = time.time()
@@ -332,12 +320,14 @@ class MathQuizApp:
         if remaining_time > 0:
             minutes, seconds = divmod(remaining_time, 60)
             self.timer_label.config(text=f"{int(minutes):02d}:{int(seconds):02d}")
-            self.root.after(1000, self.update_timer)  # Memperbarui timer setiap detik
+            self.root.after(1000, self.update_timer)
         else:
             self.show_results()
 
     def show_results(self):
         self.quiz_frame.destroy()
+        if self.difficulty == "easy" and self.total_jawaban == 10:
+            tk.Label(self.root, text="Selamat anda mendapatkan penghargaan 'Baby Gronk'", font=("Helvetica", 14)).pack(pady=20)
         HasilJawaban(self.root, self.total_quiz, self.total_jawaban, self.salah_jawab, self.username, self.difficulty)
 
 if __name__ == "__main__":
