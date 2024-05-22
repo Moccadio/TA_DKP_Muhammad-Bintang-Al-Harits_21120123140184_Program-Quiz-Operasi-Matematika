@@ -167,7 +167,7 @@ class MathQuizApp:
         self.main_frame.pack(fill="both", expand=True)
 
         widgets = [
-            tk.Label(self.main_frame, text="Welcome to SigMath", font=("Poppins", 16)),
+            tk.Label(self.main_frame, text=f"Hello {self.username},\nWelcome to SigMath", font=("Poppins", 16)),
             tk.Button(self.main_frame, text="Mulai Quiz", command=self.select_difficulty),
             tk.Button(self.main_frame, text="Tutorial", command=self.start_tutorial),
             tk.Button(self.main_frame, text="Keluar Aplikasi", command=self.root.quit)
