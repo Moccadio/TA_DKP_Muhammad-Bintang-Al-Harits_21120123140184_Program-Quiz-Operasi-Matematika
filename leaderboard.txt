@@ -1,8 +1,0 @@
-user,easy,8
-user,easy,0
-Wattesigma,easy,9
-bintang,medium,20
-bintang,easy,10
-bintang,easy,4
-alpa,easy,0
-alpa,easy,10
