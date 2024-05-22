@@ -325,9 +325,23 @@ class MathQuizApp:
             self.show_results()
 
     def show_results(self):
-        self.quiz_frame.destroy()
-        if self.difficulty == "easy" and self.total_jawaban == 10:
-            tk.Label(self.root, text="Selamat anda mendapatkan penghargaan 'Baby Gronk'", font=("Helvetica", 14)).pack(pady=20)
+        self.quiz_frame.destroy()  # Destroy the quiz frame
+
+        congratulation_text = ""  # Initialize the congratulation text
+        if self.difficulty == "hard" and self.total_jawaban == 50:
+            congratulation_text = "Selamat! Anda telah menjadi 'Sigma Male Mewing'!"
+        elif self.difficulty == "hard" and self.total_jawaban > 40:
+            congratulation_text = "Selamat! Anda telah menjadi 'Only in Ohio'!"
+        elif self.difficulty == "hard" and self.total_jawaban > 30:
+            congratulation_text = "Kerja bagus! Namun kemampuanmu belum sebanding dengan Skibidi Toilet"
+        elif self.difficulty == "medium" and self.total_jawaban == 20:
+            congratulation_text = "Selamat! Anda telah menjadi 'Level 50 Rizz'!"
+        elif self.difficulty == "easy" and self.total_jawaban == 10:
+            congratulation_text = "Selamat! Anda telah menjadi 'Baby Gronk'!"
+        else:
+            congratulation_text = "Beristirahatlah! Mio Mirza menunggumu!"
+        tk.Label(self.root, text=congratulation_text, font=("Helvetica", 14)).pack(pady=20)
+
         HasilJawaban(self.root, self.total_quiz, self.total_jawaban, self.salah_jawab, self.username, self.difficulty)
 
 if __name__ == "__main__":
