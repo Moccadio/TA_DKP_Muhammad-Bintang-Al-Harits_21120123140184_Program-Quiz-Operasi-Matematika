@@ -201,7 +201,6 @@ class MathQuizApp:
             tk.Label(self.main_frame, text="Welcome to SigMath", font=("Poppins", 16)),
             tk.Button(self.main_frame, text="Mulai Quiz", command=self.select_difficulty),
             tk.Button(self.main_frame, text="Tutorial", command=self.start_tutorial),
-            tk.Button(self.main_frame, text="Lihat Leaderboard", command=lambda: HasilJawaban(self.root).show_leaderboard()),
             tk.Button(self.main_frame, text="Keluar Aplikasi", command=self.root.quit)
         ]
 
