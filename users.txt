@@ -1,1 +1,2 @@
 plp,plp
+bintang,bintang
