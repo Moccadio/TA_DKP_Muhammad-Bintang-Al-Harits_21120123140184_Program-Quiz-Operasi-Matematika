@@ -254,7 +254,7 @@ class MathQuizApp:
     def back_to_main_menu(self):
         if hasattr(self, "tutorial_frame"):
             self.tutorial_frame.destroy()
-        else:
+        if hasattr(self, "difficulty_frame"):
             self.difficulty_frame.destroy()
         self.main_menu()
 
