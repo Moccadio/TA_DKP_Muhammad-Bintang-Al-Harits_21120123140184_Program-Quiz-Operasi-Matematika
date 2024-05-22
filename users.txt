@@ -1,3 +1,1 @@
-Wattesigma,sigma
-user,pass
-bintang,pass
+plp,plp
