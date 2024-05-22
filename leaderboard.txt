@@ -1,0 +1,3 @@
+user,easy,8
+user,easy,0
+Wattesigma,easy,9
